@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{814D2E0B-4FD7-4F94-AAF8-E0A1075E82FB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SystemCore</RootNamespace>
+    <AssemblyName>SystemCore</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.101.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.101.0\lib\net451\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\MinimumPrivilegeLevelAttribute.cs" />
+    <Compile Include="Devices\Alarm\AlarmSystem.cs" />
+    <Compile Include="Devices\Alarm\Impl\AlarmSystemImpl.cs" />
+    <Compile Include="Devices\Alarm\Impl\AlarmSystemMuterDecorator.cs" />
+    <Compile Include="Exceptions\SensorMissingException.cs" />
+    <Compile Include="Helpers\EventHelper.cs" />
+    <Compile Include="Mappers\Event2EventTO.cs" />
+    <Compile Include="Mappers\User2SystemUserTO.cs" />
+    <Compile Include="Sensors\Drivers\SensorDriver.cs" />
+    <Compile Include="Sensors\Drivers\SensorState.cs" />
+    <Compile Include="Sensors\SensorEvents\EventSeverity.cs" />
+    <Compile Include="Sensors\SensorEvents\SensorEventMappers\DefaultSensorEventMapper.cs" />
+    <Compile Include="Sensors\SensorEvents\SpecificSensorEvents\MoveSensorEvent.cs" />
+    <Compile Include="Sensors\SensorInfo.cs" />
+    <Compile Include="Sensors\SensorEvents\EventType.cs" />
+    <Compile Include="Exceptions\AccessDeniedException.cs" />
+    <Compile Include="Helpers\PrivilegeHelper.cs" />
+    <Compile Include="Mappers\EventTO2Event.cs" />
+    <Compile Include="Mappers\SystemUserTO2UserMapper.cs" />
+    <Compile Include="Sensors\SensorEvents\EventMapper.cs" />
+    <Compile Include="Sensors\SensorEvents\EventMapperFactory.cs" />
+    <Compile Include="Sensors\SensorEvents\SensorEventMappers\MoveSensorEventMapper.cs" />
+    <Compile Include="Sensors\SensorEvents\Event.cs" />
+    <Compile Include="Services\SMS\DefaultImpl\SMSMessageImpl.cs" />
+    <Compile Include="Services\SMS\DefaultImpl\SMSServiceImpl.cs" />
+    <Compile Include="Services\SMS\SMSMessage.cs" />
+    <Compile Include="Services\SMS\SMSRecipient.cs" />
+    <Compile Include="Services\SMS\SMSService.cs" />
+    <Compile Include="SystemActions\SensorEventsHandler\Impl\SensorEventsHandlerImpl.cs" />
+    <Compile Include="SystemActions\UserManagement\Impl\UserManagementImpl.cs" />
+    <Compile Include="SystemActions\UserManagement\Impl\UserManagementPrivilegeDecorator.cs" />
+    <Compile Include="SystemActions\ZoneManagement\Impl\ZoneManagementImpl.cs" />
+    <Compile Include="SystemActions\SensorEventsHandler\SensorEventsHandler.cs" />
+    <Compile Include="SystemActions\UserManagement\UserManagement.cs" />
+    <Compile Include="SystemActions\ZoneManagement\Impl\ZoneManagementPrivilegeDecorator.cs" />
+    <Compile Include="SystemActions\ZoneManagement\ZoneManagement.cs" />
+    <Compile Include="SystemContext\Default\DefaultDBSensorsLogger.cs" />
+    <Compile Include="SystemContext\Default\DefaultSensorsManager.cs" />
+    <Compile Include="SystemContext\Default\DefaultSystemContextConstructor.cs" />
+    <Compile Include="SystemContext\SystemLogger.cs" />
+    <Compile Include="SystemContext\SensorsManager.cs" />
+    <Compile Include="SystemContext\SensorsProvider.cs" />
+    <Compile Include="Users\User.cs" />
+    <Compile Include="SystemContext\SystemContext.cs" />
+    <Compile Include="SystemContext\SystemContextConstructor.cs" />
+    <Compile Include="TemplateEngine\MessageTemplate.cs" />
+    <Compile Include="TemplateEngine\MessageTemplate2MessageTemplateTO.cs" />
+    <Compile Include="TemplateEngine\MessageTemplateTO2MessageTemplateMapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SystemModel\SystemModel.csproj">
+      <Project>{1b3b3e08-c279-4570-b835-273ec93a31ab}</Project>
+      <Name>SystemModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.101.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.101.0\build\net451\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.101.0\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.101.0\build\net451\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
